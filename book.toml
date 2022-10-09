@@ -1,7 +1,7 @@
 [book]
 authors = ["cascades-sjtu"]
-language = "cn, en"
-multilingual = true
+language = "en"
+multilingual = false
 src = "src"
 title = "NIS7021 Lab Documentation"
 
