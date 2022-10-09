@@ -9,6 +9,7 @@ title = "NIS7021 Lab Documentation"
 git-repository-url = "https://github.com/cascades-sjtu/nis7021-labs"
 git-repository-icon = "fa-github"
 edit-url-template = "https://github.com/cascades-sjtu/nis7021-labs/issues/new/choose"
+site-url = "https://cascades-sjtu.github.io/nis7021-labs/"
 
 [output.pdf]
 optional = true
