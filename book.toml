@@ -12,6 +12,7 @@ edit-url-template = "https://github.com/cascades-sjtu/nis7021-labs/issues/new/ch
 site-url = "https://cascades-sjtu.github.io/nis7021-labs/"
 
 [output.pdf]
+optional = true
 display-header-footer = true
 static_site_url = "https://cascades-sjtu.github.io/nis7021-labs/"
 header-template = "<h3 style='font-size:10px; margin-left: 40%' class='title'></h3>"
