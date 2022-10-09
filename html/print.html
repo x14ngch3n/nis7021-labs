@@ -3,7 +3,8 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>使用说明 - NIS7021 Lab Documentation</title>
+        <title>NIS7021 Lab Documentation</title>
+        <meta name="robots" content="noindex" />
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -31,6 +32,31 @@
         <script type="text/javascript">
             var path_to_root = "";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Custom JS scripts for mdbook-pdf PDF generation -->
+        <script type='text/javascript'>
+            let markAllContentHasLoadedForPrinting = () =>
+                window.setTimeout(
+                    () => {
+                        let p = document.createElement('div');
+                        p.setAttribute('id', 'content-has-all-loaded-for-mdbook-pdf-generation');
+                        document.body.appendChild(p);
+                    }, 100
+                );
+
+            window.addEventListener('load', () => {
+                // Expand all the <details> elements for printing.
+                r = document.getElementsByTagName('details');
+                for (let i of r)
+                    i.open = true;
+
+                try {
+                    MathJax.Hub.Register.StartupHook('End', markAllContentHasLoadedForPrinting);
+                } catch (e) {
+                    markAllContentHasLoadedForPrinting();
+                }
+            });
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -75,7 +101,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html" class="active"><strong aria-hidden="true">1.</strong> 使用说明</a></li><li class="chapter-item expanded "><a href="lab1/intro.html"><strong aria-hidden="true">2.</strong> Lab1 RISC-V 汇编 / 反汇编</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="lab1/prerequisite.html"><strong aria-hidden="true">2.1.</strong> 前置知识</a></li><li class="chapter-item expanded "><a href="lab1/description.html"><strong aria-hidden="true">2.2.</strong> 作业描述</a></li><li class="chapter-item expanded "><a href="lab1/grading.html"><strong aria-hidden="true">2.3.</strong> 评分标准</a></li></ol></li><li class="chapter-item expanded "><a href="lab2/intro.html"><strong aria-hidden="true">3.</strong> Lab2 软件漏洞分析 / 防范</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="lab2/prerequisite.html"><strong aria-hidden="true">3.1.</strong> 前置知识</a></li><li class="chapter-item expanded "><a href="lab2/description.html"><strong aria-hidden="true">3.2.</strong> 作业描述</a></li><li class="chapter-item expanded "><a href="lab2/grading.html"><strong aria-hidden="true">3.3.</strong> 评分标准</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> 使用说明</a></li><li class="chapter-item expanded "><a href="lab1/intro.html"><strong aria-hidden="true">2.</strong> Lab1 RISC-V 汇编 / 反汇编</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="lab1/prerequisite.html"><strong aria-hidden="true">2.1.</strong> 前置知识</a></li><li class="chapter-item expanded "><a href="lab1/description.html"><strong aria-hidden="true">2.2.</strong> 作业描述</a></li><li class="chapter-item expanded "><a href="lab1/grading.html"><strong aria-hidden="true">2.3.</strong> 评分标准</a></li></ol></li><li class="chapter-item expanded "><a href="lab2/intro.html"><strong aria-hidden="true">3.</strong> Lab2 软件漏洞分析 / 防范</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="lab2/prerequisite.html"><strong aria-hidden="true">3.1.</strong> 前置知识</a></li><li class="chapter-item expanded "><a href="lab2/description.html"><strong aria-hidden="true">3.2.</strong> 作业描述</a></li><li class="chapter-item expanded "><a href="lab2/grading.html"><strong aria-hidden="true">3.3.</strong> 评分标准</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -112,9 +138,6 @@
                         </a>
                         <a href="https://github.com/cascades-sjtu/nis7021-labs" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
-                        </a>
-                        <a href="https://github.com/cascades-sjtu/nis7021-labs/issues/new/choose" title="Suggest an edit" aria-label="Suggest an edit">
-                            <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
                     </div>
                 </div>
@@ -159,23 +182,20 @@ mdbook build
 open ./book/pdf/output.pdf
 </code></pre>
 <p>Or just download the PDF from Github Release.</p>
-
+<div style="break-before: page; page-break-before: always;"></div><h1 id="lab1-risc-v-汇编--反汇编"><a class="header" href="#lab1-risc-v-汇编--反汇编">Lab1 RISC-V 汇编 / 反汇编</a></h1>
+<p>本实验改编自 2021-2022 秋季学期的实验一</p>
+<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="lab2-软件漏洞分析--防范"><a class="header" href="#lab2-软件漏洞分析--防范">Lab2 软件漏洞分析 / 防范</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="next" href="lab1/intro.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
                         <div style="clear: both"></div>
                     </nav>
                 </div>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="next" href="lab1/intro.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
             </nav>
 
         </div>
@@ -191,5 +211,10 @@ open ./book/pdf/output.pdf
         <script src="book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
     </body>
 </html>

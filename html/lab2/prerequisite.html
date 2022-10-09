@@ -3,33 +3,33 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>使用说明 - NIS7021 Lab Documentation</title>
+        <title>前置知识 - NIS7021 Lab Documentation</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
     </head>
     <body>
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
-            var path_to_root = "";
+            var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html" class="active"><strong aria-hidden="true">1.</strong> 使用说明</a></li><li class="chapter-item expanded "><a href="lab1/intro.html"><strong aria-hidden="true">2.</strong> Lab1 RISC-V 汇编 / 反汇编</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="lab1/prerequisite.html"><strong aria-hidden="true">2.1.</strong> 前置知识</a></li><li class="chapter-item expanded "><a href="lab1/description.html"><strong aria-hidden="true">2.2.</strong> 作业描述</a></li><li class="chapter-item expanded "><a href="lab1/grading.html"><strong aria-hidden="true">2.3.</strong> 评分标准</a></li></ol></li><li class="chapter-item expanded "><a href="lab2/intro.html"><strong aria-hidden="true">3.</strong> Lab2 软件漏洞分析 / 防范</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="lab2/prerequisite.html"><strong aria-hidden="true">3.1.</strong> 前置知识</a></li><li class="chapter-item expanded "><a href="lab2/description.html"><strong aria-hidden="true">3.2.</strong> 作业描述</a></li><li class="chapter-item expanded "><a href="lab2/grading.html"><strong aria-hidden="true">3.3.</strong> 评分标准</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../index.html"><strong aria-hidden="true">1.</strong> 使用说明</a></li><li class="chapter-item expanded "><a href="../lab1/intro.html"><strong aria-hidden="true">2.</strong> Lab1 RISC-V 汇编 / 反汇编</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../lab1/prerequisite.html"><strong aria-hidden="true">2.1.</strong> 前置知识</a></li><li class="chapter-item expanded "><a href="../lab1/description.html"><strong aria-hidden="true">2.2.</strong> 作业描述</a></li><li class="chapter-item expanded "><a href="../lab1/grading.html"><strong aria-hidden="true">2.3.</strong> 评分标准</a></li></ol></li><li class="chapter-item expanded "><a href="../lab2/intro.html"><strong aria-hidden="true">3.</strong> Lab2 软件漏洞分析 / 防范</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../lab2/prerequisite.html" class="active"><strong aria-hidden="true">3.1.</strong> 前置知识</a></li><li class="chapter-item expanded "><a href="../lab2/description.html"><strong aria-hidden="true">3.2.</strong> 作业描述</a></li><li class="chapter-item expanded "><a href="../lab2/grading.html"><strong aria-hidden="true">3.3.</strong> 评分标准</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -107,7 +107,7 @@
                     <h1 class="menu-title">NIS7021 Lab Documentation</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                         <a href="https://github.com/cascades-sjtu/nis7021-labs" title="Git repository" aria-label="Git repository">
@@ -140,31 +140,15 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="nis7021-labs"><a class="header" href="#nis7021-labs">nis7021-labs</a></h1>
-<p>Homepage for SJTU NIS7021 labs documentation</p>
-<h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
-<p>Reading Books: <a href="https://rust-lang.github.io/mdBook/guide/reading.html">https://rust-lang.github.io/mdBook/guide/reading.html</a></p>
-<h2 id="deployment"><a class="header" href="#deployment">Deployment</a></h2>
-<p>Use <a href="https://rust-lang.github.io/mdBook/cli/serve.html"><code>mdbook serve</code></a> to view the book locally.</p>
-<pre><code class="language-bash">cargo install mdbook
-git clone https://github.com/cascades-sjtu/nis7021-labs.git
-cd nis7021-labs
-mdbook serve --open
-</code></pre>
-<p>Or use <a href="https://github.com/HollowMan6/mdbook-pdf/"><code>mdbook-pdf</code></a> to generate the release version of book.</p>
-<pre><code class="language-bash">cargo install mdbook-pdf
-git clone https://github.com/cascades-sjtu/nis7021-labs.git
-cd nis7021-labs
-mdbook build
-open ./book/pdf/output.pdf
-</code></pre>
-<p>Or just download the PDF from Github Release.</p>
-
+                        
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="next" href="lab1/intro.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="prev" href="../lab2/intro.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../lab2/description.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -173,7 +157,10 @@ open ./book/pdf/output.pdf
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="next" href="lab1/intro.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="prev" href="../lab2/intro.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../lab2/description.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
@@ -183,12 +170,12 @@ open ./book/pdf/output.pdf
         <script type="text/javascript">
             window.playground_copyable = true;
         </script>
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
     </body>
