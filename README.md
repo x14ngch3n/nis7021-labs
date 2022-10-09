@@ -27,4 +27,4 @@ mdbook build
 open ./book/pdf/output.pdf
 ```
 
-Or just download the PDF from Github Release.
+Or just download the PDF from [Github Release](https://github.com/cascades-sjtu/nis7021-labs/releases).
