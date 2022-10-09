@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>NIS7021 Lab Documentation</title>
+        <title>NIS7021 实验手册</title>
         <meta name="robots" content="noindex" />
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> 使用说明</a></li><li class="chapter-item expanded "><a href="lab1/intro.html"><strong aria-hidden="true">2.</strong> Lab1 RISC-V 汇编 / 反汇编</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="lab1/prerequisite.html"><strong aria-hidden="true">2.1.</strong> 前置知识</a></li><li class="chapter-item expanded "><a href="lab1/description.html"><strong aria-hidden="true">2.2.</strong> 作业描述</a></li><li class="chapter-item expanded "><a href="lab1/grading.html"><strong aria-hidden="true">2.3.</strong> 评分标准</a></li></ol></li><li class="chapter-item expanded "><a href="lab2/intro.html"><strong aria-hidden="true">3.</strong> Lab2 软件漏洞分析 / 防范</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="lab2/prerequisite.html"><strong aria-hidden="true">3.1.</strong> 前置知识</a></li><li class="chapter-item expanded "><a href="lab2/description.html"><strong aria-hidden="true">3.2.</strong> 作业描述</a></li><li class="chapter-item expanded "><a href="lab2/grading.html"><strong aria-hidden="true">3.3.</strong> 评分标准</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> 使用说明</a></li><li class="chapter-item expanded "><a href="lab1/intro.html"><strong aria-hidden="true">2.</strong> Lab1 RISC-V 汇编 / 反汇编</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="lab1/prerequisite.html"><strong aria-hidden="true">2.1.</strong> 前置知识</a></li><li class="chapter-item expanded "><a href="lab1/description.html"><strong aria-hidden="true">2.2.</strong> 作业描述</a></li><li class="chapter-item expanded "><a href="lab1/grading.html"><strong aria-hidden="true">2.3.</strong> 评分标准</a></li></ol></li><li class="chapter-item expanded "><a href="lab2/intro.html"><strong aria-hidden="true">3.</strong> Lab2 软件漏洞分析 / 防范</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="lab2/prerequisite.html"><strong aria-hidden="true">3.1.</strong> 前置知识</a></li><li class="chapter-item expanded "><a href="lab2/description.html"><strong aria-hidden="true">3.2.</strong> 作业描述</a></li><li class="chapter-item expanded "><a href="lab2/grading.html"><strong aria-hidden="true">3.3.</strong> 评分标准</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -105,7 +105,7 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title">NIS7021 Lab Documentation</h1>
+                    <h1 class="menu-title">NIS7021 实验手册</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
@@ -138,29 +138,44 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="nis7021-labs"><a class="header" href="#nis7021-labs">nis7021-labs</a></h1>
-<p>Homepage for SJTU NIS7021 labs documentation</p>
-<h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
-<p>Reading Books: <a href="https://rust-lang.github.io/mdBook/guide/reading.html">https://rust-lang.github.io/mdBook/guide/reading.html</a></p>
-<h2 id="deployment"><a class="header" href="#deployment">Deployment</a></h2>
-<p>Use <a href="https://rust-lang.github.io/mdBook/cli/serve.html"><code>mdbook serve</code></a> to view the book locally.</p>
+                        <h1 id="使用说明"><a class="header" href="#使用说明">使用说明</a></h1>
+<h2 id="如何阅读本手册"><a class="header" href="#如何阅读本手册">如何阅读本手册</a></h2>
+<p>本手册使用 <a href="https://rust-lang.github.io/mdBook/index.html">mdBook</a> 编写，阅读方法可以参考<a href="https://rust-lang.github.io/mdBook/guide/reading.html">官方文档</a>。</p>
+<h2 id="如何构建本手册"><a class="header" href="#如何构建本手册">如何构建本手册</a></h2>
+<ul>
+<li>使用 <a href="https://rust-lang.github.io/mdBook/cli/serve.html"><code>mdbook serve</code></a> 进行本地阅览</li>
+</ul>
 <pre><code class="language-bash">cargo install mdbook
 git clone https://github.com/cascades-sjtu/nis7021-labs.git
 cd nis7021-labs
 mdbook serve --open
 </code></pre>
-<p>Or use <a href="https://github.com/HollowMan6/mdbook-pdf/"><code>mdbook-pdf</code></a> to generate the release version of book.</p>
+<ul>
+<li>使用 <a href="https://github.com/HollowMan6/mdbook-pdf/"><code>mdbook-pdf</code></a> 生成 PDF 文件</li>
+</ul>
 <pre><code class="language-bash">cargo install mdbook-pdf
 git clone https://github.com/cascades-sjtu/nis7021-labs.git
 cd nis7021-labs
 mdbook build
 open ./book/pdf/output.pdf
 </code></pre>
-<p>Or just download the PDF from Github Release.</p>
+<ul>
+<li>直接在 <a href="https://github.com/cascades-sjtu/nis7021-labs/releases">Github Release</a> 中下载 PDF 文件</li>
+</ul>
+<h2 id="如何反馈手册--作业问题"><a class="header" href="#如何反馈手册--作业问题">如何反馈手册 / 作业问题</a></h2>
+<ul>
+<li>点击右上角 <code>Suggest an edit</code> 键，进入 <a href="https://github.com/cascades-sjtu/nis7021-labs/issues/new/choose"><code>Github Issues</code></a></li>
+</ul>
+<p>PS：手册制作不易，有问题的地方请大家多多包涵，也欢迎批评交流～</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="lab1-risc-v-汇编--反汇编"><a class="header" href="#lab1-risc-v-汇编--反汇编">Lab1 RISC-V 汇编 / 反汇编</a></h1>
-<p>本实验改编自 2021-2022 秋季学期的实验一</p>
-<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="lab2-软件漏洞分析--防范"><a class="header" href="#lab2-软件漏洞分析--防范">Lab2 软件漏洞分析 / 防范</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="前置知识"><a class="header" href="#前置知识">前置知识</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="作业描述"><a class="header" href="#作业描述">作业描述</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="评分标准"><a class="header" href="#评分标准">评分标准</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="lab2-软件漏洞分析--防范"><a class="header" href="#lab2-软件漏洞分析--防范">Lab2 软件漏洞分析 / 防范</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="前置知识-1"><a class="header" href="#前置知识-1">前置知识</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="作业描述-1"><a class="header" href="#作业描述-1">作业描述</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="评分标准-1"><a class="header" href="#评分标准-1">评分标准</a></h1>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
