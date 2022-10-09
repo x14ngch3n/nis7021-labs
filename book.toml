@@ -3,7 +3,7 @@ authors = ["cascades-sjtu"]
 language = "en"
 multilingual = false
 src = "src"
-title = "NIS7021 Lab Documentation"
+title = "NIS7021 实验手册"
 
 [output.html]
 git-repository-url = "https://github.com/cascades-sjtu/nis7021-labs"
