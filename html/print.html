@@ -34,31 +34,6 @@
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
-        <!-- Custom JS scripts for mdbook-pdf PDF generation -->
-        <script type='text/javascript'>
-            let markAllContentHasLoadedForPrinting = () =>
-                window.setTimeout(
-                    () => {
-                        let p = document.createElement('div');
-                        p.setAttribute('id', 'content-has-all-loaded-for-mdbook-pdf-generation');
-                        document.body.appendChild(p);
-                    }, 100
-                );
-
-            window.addEventListener('load', () => {
-                // Expand all the <details> elements for printing.
-                r = document.getElementsByTagName('details');
-                for (let i of r)
-                    i.open = true;
-
-                try {
-                    MathJax.Hub.Register.StartupHook('End', markAllContentHasLoadedForPrinting);
-                } catch (e) {
-                    markAllContentHasLoadedForPrinting();
-                }
-            });
-        </script>
-
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script type="text/javascript">
             try {
