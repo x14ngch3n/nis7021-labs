@@ -19,7 +19,9 @@ jobs:
         with:
           mdbook-version: 'latest'
 
-      - run: mdbook build
+      - run: |
+        cargo install mdbook-pdf
+        mdbook build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
