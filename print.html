@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> 使用说明</a></li><li class="chapter-item expanded "><a href="lab1/intro.html"><strong aria-hidden="true">2.</strong> Lab1 RISC-V 汇编 / 反汇编</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="lab1/prerequisite.html"><strong aria-hidden="true">2.1.</strong> 前置知识</a></li><li class="chapter-item expanded "><a href="lab1/description.html"><strong aria-hidden="true">2.2.</strong> 作业描述</a></li><li class="chapter-item expanded "><a href="lab1/grading.html"><strong aria-hidden="true">2.3.</strong> 评分标准</a></li></ol></li><li class="chapter-item expanded "><a href="lab2/intro.html"><strong aria-hidden="true">3.</strong> Lab2 软件漏洞分析 / 防范</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="lab2/prerequisite.html"><strong aria-hidden="true">3.1.</strong> 前置知识</a></li><li class="chapter-item expanded "><a href="lab2/description.html"><strong aria-hidden="true">3.2.</strong> 作业描述</a></li><li class="chapter-item expanded "><a href="lab2/grading.html"><strong aria-hidden="true">3.3.</strong> 评分标准</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> 使用说明</a></li><li class="chapter-item expanded "><a href="lab1/intro.html"><strong aria-hidden="true">2.</strong> Lab1 RISC-V 汇编 / 逆向</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="lab1/prerequisite.html"><strong aria-hidden="true">2.1.</strong> 前置知识</a></li><li class="chapter-item expanded "><a href="lab1/description.html"><strong aria-hidden="true">2.2.</strong> 作业描述</a></li><li class="chapter-item expanded "><a href="lab1/grading.html"><strong aria-hidden="true">2.3.</strong> 评分标准</a></li></ol></li><li class="chapter-item expanded "><a href="lab2/intro.html"><strong aria-hidden="true">3.</strong> Lab2 软件漏洞分析 / 防范</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="lab2/prerequisite.html"><strong aria-hidden="true">3.1.</strong> 前置知识</a></li><li class="chapter-item expanded "><a href="lab2/description.html"><strong aria-hidden="true">3.2.</strong> 作业描述</a></li><li class="chapter-item expanded "><a href="lab2/grading.html"><strong aria-hidden="true">3.3.</strong> 评分标准</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -166,11 +166,98 @@ open ./book/pdf/output.pdf
 <ul>
 <li>点击右上角 <code>Suggest an edit</code> 键，进入 <a href="https://github.com/cascades-sjtu/nis7021-labs/issues/new/choose"><code>Github Issues</code></a></li>
 </ul>
-<p>PS：手册制作不易，有问题的地方请大家多多包涵，也欢迎批评交流～</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="lab1-risc-v-汇编--反汇编"><a class="header" href="#lab1-risc-v-汇编--反汇编">Lab1 RISC-V 汇编 / 反汇编</a></h1>
+<p>PS：手册制作不易，有问题的地方请大家多多包涵，也欢迎批评交流，发现问题可酌情加分～</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="lab1-risc-v-汇编--逆向"><a class="header" href="#lab1-risc-v-汇编--逆向">Lab1 RISC-V 汇编 / 逆向</a></h1>
+<p>本实验参考 <a href="https://notes.sjtu.edu.cn/s/Y08NaP_QS">2021 年秋季学期 NIS7021 作业一</a>，有以下改动：</p>
+<ul>
+<li>增加了 <code>qemu-riscv64</code> 的运行环境</li>
+<li>增加了 RISC-V 逆向的内容，灵感来自于 <a href="https://decompetition.io">Decompetetion</a></li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="前置知识"><a class="header" href="#前置知识">前置知识</a></h1>
+<h2 id="risc-v-汇编"><a class="header" href="#risc-v-汇编">RISC-V 汇编</a></h2>
+<ul>
+<li>
+<p>RISC-V 汇编语言基础：</p>
+<ul>
+<li><a href="https://github.com/riscv/riscv-isa-manual">RISC-V Instruction Set Manual</a></li>
+<li><a href="https://github.com/riscv-non-isa/riscv-asm-manual/blob/master/riscv-asm.md">RISC-V Assembly Programmer's Manual</a></li>
+</ul>
+</li>
+<li>
+<p>如何编写一个 RISC-V 程序：</p>
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=zhwu95.riscv">RISC-V Support</a></li>
+<li><a href="https://godbolt.org/">Compiler Explorer</a></li>
+</ul>
+</li>
+<li>
+<p>如何编译一个 RISC-V 程序：</p>
+<ul>
+<li><a href="https://github.com/riscv-collab/riscv-gnu-toolchain">RISC-V GNU Compiler Toolchain</a></li>
+<li><a href="https://packages.ubuntu.com/search?keywords=gcc-riscv64-linux-gnu">Ubuntu Package: gcc-riscv64-linux-gnu</a></li>
+</ul>
+</li>
+<li>
+<p>如何运行一个 RISC-V 程序：</p>
+<ul>
+<li><a href="http://tice.sea.eseo.fr/riscv/">emulsiV - Simulator for Virgule, a minimal processor based on the RISC-V architecture</a></li>
+<li><a href="https://qemu.readthedocs.io/en/latest/user/index.html">QEMU User Mode Emulation</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="risc-v-逆向"><a class="header" href="#risc-v-逆向">RISC-V 逆向</a></h2>
+<ul>
+<li>如何分析一个 RISC-V 程序</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="作业描述"><a class="header" href="#作业描述">作业描述</a></h1>
+<h2 id="risc-v-汇编-1"><a class="header" href="#risc-v-汇编-1">RISC-V 汇编</a></h2>
+<p>使用编写一段 RISC-V 汇编代码，实现下面的 C 语言程序功能，并能够运行在虚拟环境中。</p>
+<pre><code class="language-c">#define LEN 10
+
+int inner_product(int *v1, int *v2, int len) {
+  return len != 0 ? *v1 * *v2 + inner_product(v1 + 1, v2 + 1, len - 1) : 0;
+}
+
+int main() {
+  int v1[LEN] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+  int v2[LEN] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29};
+  int res = inner_product(v1, v2, LEN); // should return 952
+  return res; // run `echo $?` in bash to check if the return value equals to
+              // (952 % 256) = 184?
+}
+</code></pre>
+<p>要求：</p>
+<ul>
+<li>基于递归</li>
+<li>在汇编语言层面上实现函数的 prologue 和 epilogue，实现 stack 内存管理</li>
+</ul>
+<p>建议：</p>
+<ul>
+<li>先使用在线编译工具，理解 x86_64 下汇编实现的原理，然后改写成 RISC-V 指令</li>
+<li>不建议直接编译得到 RISC-V 汇编代码，因为你对代码的理解将会体现在你的报告中</li>
+<li><del>当然，如果你直接编译得到 RISC-V 汇编代码，助教也暂时没法儿自动检测出来</del></li>
+</ul>
+<p><a href="https://godbolt.org/z/E3nsTYxqs"><img src="lab1/godbolt.png" alt="godbolt" /></a></p>
+<h2 id="risc-v-逆向-1"><a class="header" href="#risc-v-逆向-1">RISC-V 逆向</a></h2>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="评分标准"><a class="header" href="#评分标准">评分标准</a></h1>
+<ul>
+<li>
+<p>RISC-V 汇编，占 60%</p>
+<ul>
+<li>代码功能正确，占 40%</li>
+<li>完成两个要求，各占 10%</li>
+<li>其他的优化，发现作业中的问题可酌情加分</li>
+</ul>
+</li>
+<li>
+<p>RISC-V 逆向，占 40%</p>
+<ul>
+<li>分析出程序功能，占 20%</li>
+<li>能够写出功能相同的程序源代码，占 20%</li>
+</ul>
+</li>
+</ul>
+<p>PS：报告分数包含在内</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="lab2-软件漏洞分析--防范"><a class="header" href="#lab2-软件漏洞分析--防范">Lab2 软件漏洞分析 / 防范</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="前置知识-1"><a class="header" href="#前置知识-1">前置知识</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="作业描述-1"><a class="header" href="#作业描述-1">作业描述</a></h1>

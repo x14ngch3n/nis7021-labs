@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../intro.html"><strong aria-hidden="true">1.</strong> 使用说明</a></li><li class="chapter-item expanded "><a href="../lab1/intro.html"><strong aria-hidden="true">2.</strong> Lab1 RISC-V 汇编 / 反汇编</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../lab1/prerequisite.html"><strong aria-hidden="true">2.1.</strong> 前置知识</a></li><li class="chapter-item expanded "><a href="../lab1/description.html" class="active"><strong aria-hidden="true">2.2.</strong> 作业描述</a></li><li class="chapter-item expanded "><a href="../lab1/grading.html"><strong aria-hidden="true">2.3.</strong> 评分标准</a></li></ol></li><li class="chapter-item expanded "><a href="../lab2/intro.html"><strong aria-hidden="true">3.</strong> Lab2 软件漏洞分析 / 防范</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../lab2/prerequisite.html"><strong aria-hidden="true">3.1.</strong> 前置知识</a></li><li class="chapter-item expanded "><a href="../lab2/description.html"><strong aria-hidden="true">3.2.</strong> 作业描述</a></li><li class="chapter-item expanded "><a href="../lab2/grading.html"><strong aria-hidden="true">3.3.</strong> 评分标准</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../intro.html"><strong aria-hidden="true">1.</strong> 使用说明</a></li><li class="chapter-item expanded "><a href="../lab1/intro.html"><strong aria-hidden="true">2.</strong> Lab1 RISC-V 汇编 / 逆向</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../lab1/prerequisite.html"><strong aria-hidden="true">2.1.</strong> 前置知识</a></li><li class="chapter-item expanded "><a href="../lab1/description.html" class="active"><strong aria-hidden="true">2.2.</strong> 作业描述</a></li><li class="chapter-item expanded "><a href="../lab1/grading.html"><strong aria-hidden="true">2.3.</strong> 评分标准</a></li></ol></li><li class="chapter-item expanded "><a href="../lab2/intro.html"><strong aria-hidden="true">3.</strong> Lab2 软件漏洞分析 / 防范</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../lab2/prerequisite.html"><strong aria-hidden="true">3.1.</strong> 前置知识</a></li><li class="chapter-item expanded "><a href="../lab2/description.html"><strong aria-hidden="true">3.2.</strong> 作业描述</a></li><li class="chapter-item expanded "><a href="../lab2/grading.html"><strong aria-hidden="true">3.3.</strong> 评分标准</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -141,6 +141,35 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="作业描述"><a class="header" href="#作业描述">作业描述</a></h1>
+<h2 id="risc-v-汇编"><a class="header" href="#risc-v-汇编">RISC-V 汇编</a></h2>
+<p>使用编写一段 RISC-V 汇编代码，实现下面的 C 语言程序功能，并能够运行在虚拟环境中。</p>
+<pre><code class="language-c">#define LEN 10
+
+int inner_product(int *v1, int *v2, int len) {
+  return len != 0 ? *v1 * *v2 + inner_product(v1 + 1, v2 + 1, len - 1) : 0;
+}
+
+int main() {
+  int v1[LEN] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+  int v2[LEN] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29};
+  int res = inner_product(v1, v2, LEN); // should return 952
+  return res; // run `echo $?` in bash to check if the return value equals to
+              // (952 % 256) = 184?
+}
+</code></pre>
+<p>要求：</p>
+<ul>
+<li>基于递归</li>
+<li>在汇编语言层面上实现函数的 prologue 和 epilogue，实现 stack 内存管理</li>
+</ul>
+<p>建议：</p>
+<ul>
+<li>先使用在线编译工具，理解 x86_64 下汇编实现的原理，然后改写成 RISC-V 指令</li>
+<li>不建议直接编译得到 RISC-V 汇编代码，因为你对代码的理解将会体现在你的报告中</li>
+<li><del>当然，如果你直接编译得到 RISC-V 汇编代码，助教也暂时没法儿自动检测出来</del></li>
+</ul>
+<p><a href="https://godbolt.org/z/E3nsTYxqs"><img src="godbolt.png" alt="godbolt" /></a></p>
+<h2 id="risc-v-逆向"><a class="header" href="#risc-v-逆向">RISC-V 逆向</a></h2>
 
                     </main>
 
