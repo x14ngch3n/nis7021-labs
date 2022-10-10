@@ -15,5 +15,5 @@ site-url = "https://cascades-sjtu.github.io/nis7021-labs/"
 optional = true
 display-header-footer = true
 static_site_url = "https://cascades-sjtu.github.io/nis7021-labs/"
-header-template = "<h3 style='font-size:10px; margin-left: 40%' class='title'></h3>"
+header-template = "<h3 style='font-size:10px; margin-left: 44%' class='title'></h3>"
 footer-template = "<p style='font-size:10px; margin-left: 48%'><span class='pageNumber'></span> / <span class='totalPages'></span></p>"

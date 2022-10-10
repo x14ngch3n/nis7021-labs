@@ -2,7 +2,7 @@
 
 ## RISC-V 汇编
 
-使用编写一段 RISC-V 汇编代码，实现下面的 C 语言程序功能，并运行在 `qemu-riscv64` 中
+编写一段 RISC-V 汇编代码，实现下面的 C 语言程序功能，并运行在 `qemu-riscv64` 中
 
 ```c
 {{#include inner_product.c}}
