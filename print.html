@@ -388,10 +388,10 @@ qemu-riscv64 ./crypto_test
 <h3 id="运行-3"><a class="header" href="#运行-3">运行</a></h3>
 <p>以 MyPinTool 为例编译一个 64 位的 PinTool，运行命令如下：</p>
 <pre><code class="language-bash">make -C source/tools/MyPinTool
-./pin -t ./source/tools/MyPinTool/obj-intel64/MyPinTool.so -o MyPinTool.out – /bin/ls
+./pin -t ./source/tools/MyPinTool/obj-intel64/MyPinTool.so -o MyPinTool.out -- /bin/ls
 </code></pre>
 <p>可以在 MyPinTool.out 中查看插桩分析结果：</p>
-<pre><code>{{#include MyPinTool.out}}
+<pre><code class="language-ascii">{{#include MyPinTool.out}}
 </code></pre>
 <p>后续的开发也可以直接在 MyPinTool.cpp 上进行</p>
 <h3 id="要求-3"><a class="header" href="#要求-3">要求</a></h3>
