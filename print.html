@@ -391,7 +391,12 @@ qemu-riscv64 ./crypto_test
 ./pin -t ./source/tools/MyPinTool/obj-intel64/MyPinTool.so -o MyPinTool.out -- /bin/ls
 </code></pre>
 <p>可以在 MyPinTool.out 中查看插桩分析结果：</p>
-<pre><code class="language-ascii">{{#include MyPinTool.out}}
+<pre><code class="language-ascii">===============================================
+MyPinTool analysis results:
+Number of instructions: 406205
+Number of basic blocks: 77720
+Number of threads: 1
+===============================================
 </code></pre>
 <p>后续的开发也可以直接在 MyPinTool.cpp 上进行</p>
 <h3 id="要求-3"><a class="header" href="#要求-3">要求</a></h3>
