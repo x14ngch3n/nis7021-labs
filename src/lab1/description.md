@@ -2,10 +2,20 @@
 
 ## RISC-V 汇编
 
-使用编写一段 RISC-V 汇编代码，实现下面的 C 语言程序功能，并能够运行在虚拟环境中。
+使用编写一段 RISC-V 汇编代码，实现下面的 C 语言程序功能，并能够运行在 `qemu-riscv64` 中
 
 ```c
 {{#include inner_product.c}}
+```
+
+运行环境：Ubuntu-20.04 x86_64
+
+运行代码：
+
+```bash
+riscv64-linux-gnu-gcc -static inner_product.s -o inner_product
+qemu-riscv64 ./inner_product
+echo $?
 ```
 
 要求：
