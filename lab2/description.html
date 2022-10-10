@@ -141,6 +141,45 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="作业描述"><a class="header" href="#作业描述">作业描述</a></h1>
+<h2 id="使用-clang-static-analyzer-发现漏洞"><a class="header" href="#使用-clang-static-analyzer-发现漏洞">使用 Clang Static Analyzer 发现漏洞</a></h2>
+<h3 id="运行"><a class="header" href="#运行">运行</a></h3>
+<p>使用如下命令查看 Clang Static Analyzer 内置的 checker：</p>
+<pre><code class="language-bash">clang -cc1 -analyzer-checker-help
+</code></pre>
+<p>使用 checker 可以检测代码中的问题，以如下代码为例：</p>
+<pre><code class="language-c">void test(int z) {
+  if (z == 0) {
+    int x = 1 / z; // warn
+  } else {
+    int y = 1 / z; // no warn
+  }
+}
+</code></pre>
+<p>使用如下命令检测：</p>
+<pre><code class="language-bash">clang -cc1 -analyze -analyzer-checker=core.DivideZero zero.c
+</code></pre>
+<h3 id="要求"><a class="header" href="#要求">要求</a></h3>
+<p>现在，需要你找到合适的 checker 检测出如下代码中的问题，并尽可能详细地分析问题的成因和 checker 的报告结果</p>
+<h3 id="建议"><a class="header" href="#建议">建议</a></h3>
+<p>使用 <a href="https://clang-analyzer.llvm.org/scan-build.html"><code>scan-build</code></a> 可以可视化地展现 checker 的工作流程</p>
+<h2 id="使用-intel-pin-防护漏洞"><a class="header" href="#使用-intel-pin-防护漏洞">使用 Intel Pin 防护漏洞</a></h2>
+<h3 id="运行-1"><a class="header" href="#运行-1">运行</a></h3>
+<p>以 MyPinTool 为例编译一个 64 位的 PinTool，运行命令如下：</p>
+<pre><code class="language-bash">make -C source/tools/MyPinTool
+./pin -t ./source/tools/MyPinTool/obj-intel64/MyPinTool.so -o MyPinTool.out – /bin/ls
+</code></pre>
+<p>可以在 MyPinTool.out 中查看插桩分析结果：</p>
+<pre><code>{{#include MyPinTool.out}}
+</code></pre>
+<p>后续的开发也可以直接在 MyPinTool.cpp 上进行</p>
+<h3 id="要求-1"><a class="header" href="#要求-1">要求</a></h3>
+<p>根据 Clang Static Analyzer 发现的漏洞，编写你的 PinTool，进行防护</p>
+<h3 id="建议-1"><a class="header" href="#建议-1">建议</a></h3>
+<ul>
+<li>阅读 <a href="https://www.intel.com/content/www/us/en/developer/articles/tool/pin-a-dynamic-binary-instrumentation-tool.html#inpage-nav-5">Tutorials</a>，大概了解 Pin 的工作原理</li>
+<li>参考其他内存检测工具 / 系统防护手段的原理，设计防护方案</li>
+<li>阅读 Pin 官方提供的 <a href="https://software.intel.com/sites/landingpage/pintool/docs/98612/Pin/doc/html/index.html#EXAMPLES">Example PinTools</a>，学习编写流程，熟悉 API 的使用，代码在 <code>source/tools/ManualExamples</code> 目录下</li>
+</ul>
 
                     </main>
 
