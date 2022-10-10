@@ -142,7 +142,7 @@
                     <main>
                         <h1 id="作业描述"><a class="header" href="#作业描述">作业描述</a></h1>
 <h2 id="risc-v-汇编"><a class="header" href="#risc-v-汇编">RISC-V 汇编</a></h2>
-<p>使用编写一段 RISC-V 汇编代码，实现下面的 C 语言程序功能，并能够运行在虚拟环境中。</p>
+<p>使用编写一段 RISC-V 汇编代码，实现下面的 C 语言程序功能，并能够运行在 <code>qemu-riscv64</code> 中</p>
 <pre><code class="language-c">#define LEN 10
 
 int inner_product(int *v1, int *v2, int len) {
@@ -156,6 +156,12 @@ int main() {
   return res; // run `echo $?` in bash to check if the return value equals to
               // (952 % 256) = 184?
 }
+</code></pre>
+<p>运行环境：Ubuntu-20.04 x86_64</p>
+<p>运行代码：</p>
+<pre><code class="language-bash">riscv64-linux-gnu-gcc -static inner_product.s -o inner_product
+qemu-riscv64 ./inner_product
+echo $?
 </code></pre>
 <p>要求：</p>
 <ul>
