@@ -31,4 +31,4 @@ open ./book/pdf/output.pdf
 
 - 点击右上角 `Suggest an edit` 键，进入 [`Github Issues`](https://github.com/cascades-sjtu/nis7021-labs/issues/new/choose)
 
-PS：手册制作不易，有问题的地方请大家多多包涵，也欢迎批评交流～
+PS：手册制作不易，有问题的地方请大家多多包涵，也欢迎批评交流，发现问题可酌情加分～
