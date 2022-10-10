@@ -143,29 +143,25 @@
                         <h1 id="前置知识"><a class="header" href="#前置知识">前置知识</a></h1>
 <h2 id="risc-v-汇编"><a class="header" href="#risc-v-汇编">RISC-V 汇编</a></h2>
 <ul>
-<li>
-<p>RISC-V 汇编语言基础：</p>
+<li>RISC-V 汇编语言基础：
 <ul>
 <li><a href="https://github.com/riscv/riscv-isa-manual">RISC-V Instruction Set Manual</a></li>
 <li><a href="https://github.com/riscv-non-isa/riscv-asm-manual/blob/master/riscv-asm.md">RISC-V Assembly Programmer's Manual</a></li>
 </ul>
 </li>
-<li>
-<p>如何编写一个 RISC-V 程序：</p>
+<li>如何编写一个 RISC-V 程序：
 <ul>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=zhwu95.riscv">RISC-V Support</a></li>
 <li><a href="https://godbolt.org/">Compiler Explorer</a></li>
 </ul>
 </li>
-<li>
-<p>如何编译一个 RISC-V 程序：</p>
+<li>如何编译一个 RISC-V 程序：
 <ul>
 <li><a href="https://github.com/riscv-collab/riscv-gnu-toolchain">RISC-V GNU Compiler Toolchain</a></li>
 <li><a href="https://packages.ubuntu.com/search?keywords=gcc-riscv64-linux-gnu">Ubuntu Package: gcc-riscv64-linux-gnu</a></li>
 </ul>
 </li>
-<li>
-<p>如何运行一个 RISC-V 程序：</p>
+<li>如何运行一个 RISC-V 程序：
 <ul>
 <li><a href="http://tice.sea.eseo.fr/riscv/">emulsiV - Simulator for Virgule, a minimal processor based on the RISC-V architecture</a></li>
 <li><a href="https://qemu.readthedocs.io/en/latest/user/index.html">QEMU User Mode Emulation</a></li>
@@ -174,7 +170,19 @@
 </ul>
 <h2 id="risc-v-逆向"><a class="header" href="#risc-v-逆向">RISC-V 逆向</a></h2>
 <ul>
-<li>如何分析一个 RISC-V 程序</li>
+<li>如何静态分析一个 RISC-V 程序：
+<ul>
+<li><a href="https://www.man7.org/linux/man-pages/man1/file.1.html">file</a></li>
+<li><a href="https://packages.ubuntu.com/bionic/binutils-riscv64-linux-gnu">Ubuntu Package: binutils-riscv64-linux-gnu</a></li>
+<li><a href="https://ghidra-sre.org">Ghidra</a></li>
+</ul>
+</li>
+<li>如何动态分析一个 RISC-V 程序：
+<ul>
+<li><a href="https://www.qemu.org/docs/master/user/main.html?highlight=gdb#command-line-options"><code>qemu-riscv64 -g</code></a></li>
+<li><a href="https://sourceware.org/gdb/onlinedocs/gdb/Connecting.html">`riscv64-linux-gnu-gdb</a></li>
+</ul>
+</li>
 </ul>
 
                     </main>
