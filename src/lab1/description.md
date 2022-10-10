@@ -37,13 +37,15 @@ echo $?
 
 给定二进制代码，分析其包含的加解密函数，编写功能相同的 C 代码，并运行在 `qemu-riscv64` 中
 
+二进制文件地址：<https://github.com/cascades-sjtu/nis7021-labs/blob/main/src/lab1/libcrypto.a>
+
 ### 运行
 
 操作系统：Ubuntu-20.04 x86_64
 
 编写的源代码保存在 crypto.c 中，测试代码 crytpo_test.c 由助教提供，代码如下：
 
-```
+```c
 {{#include crypto_test.c}}
 ```
 
