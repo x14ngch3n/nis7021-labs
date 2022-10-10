@@ -41,12 +41,12 @@ TODO: 添加被分析代码的链接
 
 ```bash
 make -C source/tools/MyPinTool
-./pin -t ./source/tools/MyPinTool/obj-intel64/MyPinTool.so -o MyPinTool.out – /bin/ls
+./pin -t ./source/tools/MyPinTool/obj-intel64/MyPinTool.so -o MyPinTool.out -- /bin/ls
 ```
 
 可以在 MyPinTool.out 中查看插桩分析结果：
 
-```
+```ascii
 {{#include MyPinTool.out}}
 ```
 
