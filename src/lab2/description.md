@@ -47,7 +47,12 @@ make -C source/tools/MyPinTool
 可以在 MyPinTool.out 中查看插桩分析结果：
 
 ```ascii
-{{#include MyPinTool.out}}
+===============================================
+MyPinTool analysis results:
+Number of instructions: 406205
+Number of basic blocks: 77720
+Number of threads: 1
+===============================================
 ```
 
 后续的开发也可以直接在 MyPinTool.cpp 上进行
