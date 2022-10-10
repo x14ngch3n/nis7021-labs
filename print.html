@@ -255,10 +255,11 @@ echo $?
 <p><a href="https://godbolt.org/z/E3nsTYxqs"><img src="lab1/godbolt.png" alt="godbolt" /></a></p>
 <h2 id="risc-v-逆向-1"><a class="header" href="#risc-v-逆向-1">RISC-V 逆向</a></h2>
 <p>给定二进制代码，分析其包含的加解密函数，编写功能相同的 C 代码，并运行在 <code>qemu-riscv64</code> 中</p>
+<p>二进制文件地址：<a href="https://github.com/cascades-sjtu/nis7021-labs/blob/main/src/lab1/libcrypto.a">https://github.com/cascades-sjtu/nis7021-labs/blob/main/src/lab1/libcrypto.a</a></p>
 <h3 id="运行-1"><a class="header" href="#运行-1">运行</a></h3>
 <p>操作系统：Ubuntu-20.04 x86_64</p>
 <p>编写的源代码保存在 crypto.c 中，测试代码 crytpo_test.c 由助教提供，代码如下：</p>
-<pre><code>/*************************** HEADER FILES ***************************/
+<pre><code class="language-c">/*************************** HEADER FILES ***************************/
 #include &quot;crypto.h&quot;
 #include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
