@@ -26,9 +26,12 @@ clang -cc1 -analyze -analyzer-checker=core.DivideZero zero.c
 
 现在，需要你找到合适的 checker 检测出如下代码中的问题，并尽可能详细地分析问题的成因和 checker 的报告结果
 
+TODO: 添加被分析代码的链接
+
 ### 建议
 
-使用 [`scan-build`](https://clang-analyzer.llvm.org/scan-build.html) 可以可视化地展现 checker 的工作流程
+- 按照命名和介绍来选择合适的 checker，先运行官方提供的测试代码，理解 checker 行为
+- 使用 [`scan-build`](https://clang-analyzer.llvm.org/scan-build.html) 可视化地展现 checker 的分析流程
 
 ## 使用 Intel Pin 防护漏洞
 
