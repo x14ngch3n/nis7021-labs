@@ -18,7 +18,7 @@
 ## RISC-V 逆向
 
 - 如何静态分析一个 RISC-V 程序：
-  - [file](https://www.man7.org/linux/man-pages/man1/file.1.html)
+  - [`file`](https://www.man7.org/linux/man-pages/man1/file.1.html)
   - [Ubuntu Package: binutils-riscv64-linux-gnu](https://packages.ubuntu.com/bionic/binutils-riscv64-linux-gnu)
   - [Ghidra](https://ghidra-sre.org)
 - 如何动态分析一个 RISC-V 程序：
