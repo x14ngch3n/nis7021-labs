@@ -17,7 +17,7 @@ cd nis7021-labs
 mdbook serve --open
 ```
 
-Or use [`mdbook-pdf`](https://github.com/HollowMan6/mdbook-pdf/) to generate the release version of book.
+Or use [`mdbook-pdf`](https://github.com/HollowMan6/mdbook-pdf/) to generate the PDF version of book.
 
 ```bash
 cargo install mdbook-pdf
