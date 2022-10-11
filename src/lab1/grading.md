@@ -25,7 +25,7 @@ curl -F "file=@{student_id}.s" http://101.34.212.12:5000/upload/asm
 - RISC-V 逆向
 
 ```bash
-curl -F "file=@{student_id}.s" http://101.34.212.12:5000/upload/crypto
+curl -F "file=@{student_id}.c" http://101.34.212.12:5000/upload/crypto
 ```
 
 每次提交的代码会覆盖上一次提交，若返回 `Great! You've passed the test` 则表明通过验证，助教只会查看最后一次提交结果
