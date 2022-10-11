@@ -11,3 +11,29 @@
 | 共计        |                            | 40     |                            |
 
 PS：报告分数包含在内
+
+## 服务器验证方式
+
+将文件名保存为你的学号，即替换命令中的 `student_id`，使用 `curl` 上传文件
+
+- RISC-V 汇编
+
+```bash
+curl -F "file=@{student_id}.s" http://101.34.212.12:5000/upload/asm
+```
+
+- RISC-V 逆向
+
+```bash
+curl -F "file=@{student_id}.s" http://101.34.212.12:5000/upload/crypto
+```
+
+每次提交的代码会覆盖上一次提交，若返回 `Great! You've passed the test` 则表明通过验证，助教只会查看最后一次提交结果
+
+服务器验证脚本如下：
+
+```python
+{{#include server.py}}
+```
+
+PS：请在本地验证通过后再使用服务器验证，请不要采用非预期的方法通过验证，~~小小云服务器和随手写的脚本经不起大家折腾~~
