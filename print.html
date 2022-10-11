@@ -316,6 +316,85 @@ qemu-riscv64 ./crypto_test
 </tbody></table>
 </div>
 <p>PS：报告分数包含在内</p>
+<h2 id="服务器验证方式"><a class="header" href="#服务器验证方式">服务器验证方式</a></h2>
+<p>将文件名保存为你的学号，即替换命令中的 <code>student_id</code>，使用 <code>curl</code> 上传文件</p>
+<ul>
+<li>RISC-V 汇编</li>
+</ul>
+<pre><code class="language-bash">curl -F &quot;file=@{student_id}.s&quot; http://101.34.212.12:5000/upload/asm
+</code></pre>
+<ul>
+<li>RISC-V 逆向</li>
+</ul>
+<pre><code class="language-bash">curl -F &quot;file=@{student_id}.s&quot; http://101.34.212.12:5000/upload/crypto
+</code></pre>
+<p>每次提交的代码会覆盖上一次提交，若返回 <code>Great! You've passed the test</code> 则表明通过验证，助教只会查看最后一次提交结果</p>
+<p>服务器验证脚本如下：</p>
+<pre><code class="language-python">from flask import Flask, request
+import os
+import shutil
+
+app = Flask(__name__)
+
+
+@app.route(&quot;/&quot;)
+def hello_world():
+    return &quot;Hello, this is NIS7021 Lab1!\n&quot;
+
+
+def save_file(file, dirname, proj_dir, proj_files, source_filename):
+    try:
+        # create directory
+        os.makedirs(dirname, exist_ok=True)
+        for proj_file in proj_files:
+            shutil.copy(f&quot;{proj_dir}/{proj_file}&quot;, dirname + proj_file)
+        # write bytes into file
+        file.save(dirname + source_filename)
+        return True
+    except OSError as e:
+        print(e)
+        return False
+
+
+def build_and_test(dirname, program, value):
+    # build the code using pre-provided Makefile
+    if not os.system(&quot;make -C &quot; + dirname) == 0:
+        return False
+    # test the return value of command
+    if not os.system(&quot;qemu-riscv64 &quot; + dirname + program) == value:
+        return False
+    else:
+        return True
+
+
+@app.route(&quot;/upload/asm&quot;, methods=[&quot;POST&quot;])
+def get_asm_code():
+    # using student id as directory name
+    file = request.files.get(&quot;file&quot;)
+    dirname = f&quot;upload/asm/{os.path.splitext(file.filename)[0]}/&quot;
+    if not save_file(file, dirname, &quot;inner_product&quot;, [&quot;Makefile&quot;], &quot;inner_product.s&quot;):
+        shutil.rmtree(dirname)
+        return &quot;Failed to save your file\n&quot;
+    if not build_and_test(dirname, &quot;inner_product&quot;, 47104):
+        shutil.rmtree(dirname)
+        return &quot;Failed to pass test\n&quot;
+    return &quot;Great! You've passed the test\n&quot;
+
+
+@app.route(&quot;/upload/crypto&quot;, methods=[&quot;POST&quot;])
+def get_source_code():
+    # using student id as directory name
+    file = request.files.get(&quot;file&quot;)
+    dirname = f&quot;upload/crypto/{os.path.splitext(file.filename)[0]}/&quot;
+    if not save_file(file, dirname, &quot;crypto-algorithms&quot;, [&quot;Makefile&quot;, &quot;crypto_test.c&quot;, &quot;crypto.h&quot;], &quot;crypto.c&quot;):
+        shutil.rmtree(dirname)
+        return &quot;Failed to save your file\n&quot;
+    if not build_and_test(dirname, &quot;crypto_test&quot;, 0):
+        shutil.rmtree(dirname)
+        return &quot;Failed to pass test\n&quot;
+    return &quot;Great! You've passed the test\n&quot;
+</code></pre>
+<p>PS：请在本地验证通过后再使用服务器验证，请不要采用非预期的方法通过验证，<del>小小云服务器和随手写的脚本经不起大家折腾</del></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="lab2-软件漏洞分析--防范"><a class="header" href="#lab2-软件漏洞分析--防范">Lab2 软件漏洞分析 / 防范</a></h1>
 <p>本实验参考 <a href="https://notes.sjtu.edu.cn/s/Y08NaP_QS">2021 年秋季学期 NIS7021 作业二实验一</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="前置知识-1"><a class="header" href="#前置知识-1">前置知识</a></h1>
