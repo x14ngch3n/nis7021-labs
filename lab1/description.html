@@ -227,6 +227,28 @@ qemu-riscv64 ./crypto_test
 <ul>
 <li>加解密函数参考：<a href="https://github.com/B-Con/crypto-algorithms">https://github.com/B-Con/crypto-algorithms</a></li>
 </ul>
+<h2 id="计划"><a class="header" href="#计划">计划</a></h2>
+<h3 id="risc-v-汇编-1"><a class="header" href="#risc-v-汇编-1">RISC-V 汇编</a></h3>
+<ul>
+<li>熟悉 RISC-V 指令集的寄存器，调用约定，常见指令（数据移动，跳转），在 <a href="http://tice.sea.eseo.fr/riscv/">emulsiV</a> 中可视化理解</li>
+<li>将源代码在 <a href="https://godbolt.org/">Compiler Explorer</a> 中编译为你熟悉的汇编代码，学习递归函数的原理以及栈内存的分配</li>
+<li>编写代码主要分为两步：
+<ul>
+<li>完成 <code>inner_product</code> 函数，即计算当前对应元素的乘积和递归部分</li>
+<li>完成 <code>main</code> 函数，即填入数据并调用 <code>inner_product</code> 函数</li>
+</ul>
+</li>
+<li>在本地安装工具链，使用调试器和命令行工具验证</li>
+</ul>
+<h3 id="risc-v-逆向-1"><a class="header" href="#risc-v-逆向-1">RISC-V 逆向</a></h3>
+<ul>
+<li>学会使用一种逆向分析工具，推荐 <a href="https://ghidra-sre.org">Ghidra</a></li>
+<li>对照反汇编 / 反编译的结果，写出加解密算法的伪代码，可以用 Python 表示</li>
+<li>进一步优化上一步得到的代码，得到加解密的算法的直观描述</li>
+<li>用 C 语言实现上述加解密算法，在本地安装工具链，使用调试器和命令行工具验证</li>
+</ul>
+<p>PS：已经给了很多提示啦，大家加油！</p>
+<p>PS：如果你觉得本手册写的还不错的话，不妨点个 <a href="https://github.com/cascades-sjtu/nis7021-labs/stargazers">star</a> 吧，这是对我最大的鼓励～</p>
 
                     </main>
 
