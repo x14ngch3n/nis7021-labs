@@ -24,3 +24,5 @@
 - 如何动态分析一个 RISC-V 程序：
   - [`qemu-riscv64 -g`](https://www.qemu.org/docs/master/user/main.html?highlight=gdb#command-line-options)
   - [`riscv64-unknown-elf-gdb`](https://sourceware.org/gdb/onlinedocs/gdb/Connecting.html)
+
+{{#include ../star.md}}

@@ -66,3 +66,5 @@ Number of threads: 1
 - 阅读 [Tutorials](https://www.intel.com/content/www/us/en/developer/articles/tool/pin-a-dynamic-binary-instrumentation-tool.html#inpage-nav-5)，大概了解 Pin 的工作原理
 - 参考其他内存检测工具 / 系统防护手段的原理，设计防护方案
 - 阅读 Pin 官方提供的 [Example PinTools](https://software.intel.com/sites/landingpage/pintool/docs/98612/Pin/doc/html/index.html#EXAMPLES)，学习编写流程，熟悉 API 的使用，代码在 `source/tools/ManualExamples` 目录下
+
+{{#include ../star.md}}

@@ -21,3 +21,5 @@
   - [Pin 3.24 User Guide](https://software.intel.com/sites/landingpage/pintool/docs/98612/Pin/doc/html/index.html)
 
 PS：请仔细阅读工具主页的内容，并阅读官方提供的教程/文档
+
+{{#include ../star.md}}
