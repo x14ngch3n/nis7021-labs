@@ -4,7 +4,7 @@
 #include <string.h>
 
 /*********************** FUNCTION DEFINITIONS ***********************/
-int cyrpto_test() {
+int crypto_test() {
   // Provide your own test case
   char text[] = {"**************************"};
   char code[] = {"**************************"};
