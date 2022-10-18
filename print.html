@@ -421,7 +421,10 @@ def get_source_code():
 <p>PS：请在本地验证通过后再使用服务器验证，请不要采用非预期的方法通过验证，<del>小小云服务器和随手写的脚本经不起大家折腾</del></p>
 <p>PS：如果你觉得本手册写的还不错的话，不妨点个 <a href="https://github.com/cascades-sjtu/nis7021-labs/stargazers">star</a> 吧，这是对我最大的鼓励～</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="lab2-软件漏洞分析--防范"><a class="header" href="#lab2-软件漏洞分析--防范">Lab2 软件漏洞分析 / 防范</a></h1>
-<p>本实验参考 <a href="https://notes.sjtu.edu.cn/s/Y08NaP_QS">2021 年秋季学期 NIS7021 作业二实验一</a></p>
+<p>本实验参考 <a href="https://notes.sjtu.edu.cn/s/Y08NaP_QS">2021 年秋季学期 NIS7021 作业二实验一</a>，有以下改动：</p>
+<ul>
+<li>分析真实世界的漏洞，灵感来自于 <a href="https://linux.cn/article-15120-1.html">《Ubuntu Pro 现在免费为你提供 10 年的安全更新》</a></li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="前置知识-1"><a class="header" href="#前置知识-1">前置知识</a></h1>
 <h2 id="clangstaticanalyzer"><a class="header" href="#clangstaticanalyzer">ClangStaticAnalyzer</a></h2>
 <ul>
@@ -482,12 +485,18 @@ def get_source_code():
 <pre><code class="language-bash">clang -cc1 -analyze -analyzer-checker=core.DivideZero zero.c
 </code></pre>
 <h3 id="要求-2"><a class="header" href="#要求-2">要求</a></h3>
-<p>现在，需要你找到合适的 checker 检测出如下代码中的问题，并尽可能详细地分析问题的成因和 checker 的报告结果</p>
-<p>TODO: 添加被分析代码的链接</p>
+<p>现在，需要你使用的 checker 检测出<strong>真实世界</strong>代码中的漏洞，并尽可能详细地分析漏洞的成因和 checker 的报告结果</p>
+<p>如果把代码分析工具比喻成锤子，把漏洞比喻为钉子，我们可以有以下两种寻找分析世界漏洞的思路：</p>
+<ul>
+<li><strong>先找锤子，再找钉子</strong>：先选择自己熟悉的某一类漏洞，从 <a href="https://clang-analyzer.llvm.org/available_checks.html">Available Checkers</a> 中找到合适的 checker，再从 <a href="https://www.cve.org">官方 CVE 列表</a> 或者 <a href="https://ubuntu.com/security/cves">第三方 CVE 列表</a> 中根据漏洞类型的关键词搜索到历史漏洞</li>
+<li><strong>先找钉子，再找锤子</strong>：使用 <a href="https://ubuntu.com/pro">Ubuntu Pro</a> 查找系统中包含的带有未修复 CVE 漏洞的软件包，根据该软件包中的某个历史漏洞，针对性地选取 checker 进行分析，并对比打 Patch 前后的分析结果</li>
+</ul>
+<p>每位同学都需要自行完成上述调研工作，并将选好的漏洞报给助教，避免雷同</p>
+<p>TODO: 两种方法都添加一个例子，规定自选漏洞类别</p>
 <h3 id="建议-2"><a class="header" href="#建议-2">建议</a></h3>
 <ul>
 <li>按照命名和介绍来选择合适的 checker，先运行官方提供的测试代码，理解 checker 行为</li>
-<li>使用 <a href="https://clang-analyzer.llvm.org/scan-build.html"><code>scan-build</code></a> 可视化地展现 checker 的分析流程</li>
+<li>使用 <a href="https://clang-analyzer.llvm.org/scan-build.html"><code>scan-build</code></a> 或者 <a href="https://clang-analyzer.llvm.org/codechecker.html"><code>CodeChecker</code></a> 来分析整个项目的代码，并可视化地展现 checker 的分析流程</li>
 </ul>
 <h2 id="使用-intel-pin-防护漏洞"><a class="header" href="#使用-intel-pin-防护漏洞">使用 Intel Pin 防护漏洞</a></h2>
 <h3 id="运行-3"><a class="header" href="#运行-3">运行</a></h3>
@@ -505,7 +514,7 @@ Number of threads: 1
 </code></pre>
 <p>后续的开发也可以直接在 MyPinTool.cpp 上进行</p>
 <h3 id="要求-3"><a class="header" href="#要求-3">要求</a></h3>
-<p>根据 Clang Static Analyzer 发现的漏洞，编写你的 PinTool，进行防护</p>
+<p>针对 Clang Static Analyzer 发现的漏洞，编写你的 PinTool，进行防护</p>
 <h3 id="建议-3"><a class="header" href="#建议-3">建议</a></h3>
 <ul>
 <li>阅读 <a href="https://www.intel.com/content/www/us/en/developer/articles/tool/pin-a-dynamic-binary-instrumentation-tool.html#inpage-nav-5">Tutorials</a>，大概了解 Pin 的工作原理</li>
@@ -515,8 +524,8 @@ Number of threads: 1
 <p>PS：如果你觉得本手册写的还不错的话，不妨点个 <a href="https://github.com/cascades-sjtu/nis7021-labs/stargazers">star</a> 吧，这是对我最大的鼓励～</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="评分标准-1"><a class="header" href="#评分标准-1">评分标准</a></h1>
 <div class="table-wrapper"><table><thead><tr><th>项目</th><th>标准</th><th>百分比</th><th>备注</th></tr></thead><tbody>
-<tr><td>使用 CSA 发现漏洞</td><td>发现漏洞，描述漏洞类型</td><td>20</td><td></td></tr>
-<tr><td>使用 CSA 发现漏洞</td><td>分析漏洞成因</td><td>20</td><td>可以结合 CSA 原理</td></tr>
+<tr><td>使用 CSA 发现漏洞</td><td>选取漏洞，使用 checker 检测</td><td>20</td><td>描述选取漏洞的过程</td></tr>
+<tr><td>使用 CSA 发现漏洞</td><td>分析漏洞成因和 patch 的影响</td><td>20</td><td>可以结合 CSA 原理</td></tr>
 <tr><td>共计</td><td></td><td>40</td><td></td></tr>
 <tr><td>使用 Pin 防护漏洞</td><td>设计防护方案</td><td>20</td><td></td></tr>
 <tr><td>使用 Pin 防护漏洞</td><td>编写 PinTool</td><td>40</td><td>本地验证，需要截图</td></tr>
