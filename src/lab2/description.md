@@ -24,14 +24,21 @@ clang -cc1 -analyze -analyzer-checker=core.DivideZero zero.c
 
 ### 要求
 
-现在，需要你找到合适的 checker 检测出如下代码中的问题，并尽可能详细地分析问题的成因和 checker 的报告结果
+现在，需要你使用的 checker 检测出**真实世界**代码中的漏洞，并尽可能详细地分析漏洞的成因和 checker 的报告结果
 
-TODO: 添加被分析代码的链接
+如果把代码分析工具比喻成锤子，把漏洞比喻为钉子，我们可以有以下两种寻找分析世界漏洞的思路：
+
+- **先找锤子，再找钉子**：先选择自己熟悉的某一类漏洞，从 [Available Checkers](https://clang-analyzer.llvm.org/available_checks.html) 中找到合适的 checker，再从 [官方 CVE 列表](https://www.cve.org) 或者 [第三方 CVE 列表](https://ubuntu.com/security/cves) 中根据漏洞类型的关键词搜索到历史漏洞
+- **先找钉子，再找锤子**：使用 [Ubuntu Pro](https://ubuntu.com/pro) 查找系统中包含的带有未修复 CVE 漏洞的软件包，根据该软件包中的某个历史漏洞，针对性地选取 checker 进行分析，并对比打 Patch 前后的分析结果
+
+每位同学都需要自行完成上述调研工作，并将选好的漏洞报给助教，避免雷同
+
+TODO: 两种方法都添加一个例子，规定自选漏洞类别
 
 ### 建议
 
 - 按照命名和介绍来选择合适的 checker，先运行官方提供的测试代码，理解 checker 行为
-- 使用 [`scan-build`](https://clang-analyzer.llvm.org/scan-build.html) 可视化地展现 checker 的分析流程
+- 使用 [`scan-build`](https://clang-analyzer.llvm.org/scan-build.html) 或者 [`CodeChecker`](https://clang-analyzer.llvm.org/codechecker.html) 来分析整个项目的代码，并可视化地展现 checker 的分析流程
 
 ## 使用 Intel Pin 防护漏洞
 
@@ -59,7 +66,7 @@ Number of threads: 1
 
 ### 要求
 
-根据 Clang Static Analyzer 发现的漏洞，编写你的 PinTool，进行防护
+针对 Clang Static Analyzer 发现的漏洞，编写你的 PinTool，进行防护
 
 ### 建议
 
