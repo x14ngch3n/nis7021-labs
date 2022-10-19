@@ -8,6 +8,7 @@
 - 工具介绍
   - [Clang Static Analyzer](https://clang-analyzer.llvm.org)
   - [Available Checkers](https://clang-analyzer.llvm.org/available_checks.html)
+  - [Getting Started with LLVM Core Libraries](https://getting-started-with-llvm-core-libraries-zh-cn.readthedocs.io/zh_CN/latest/ch09.html#)
 - 文档
   - [Clang Doxygen](https://clang.llvm.org/doxygen/index.html)
 
