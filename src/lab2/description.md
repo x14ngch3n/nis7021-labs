@@ -31,7 +31,7 @@ clang -cc1 -analyze -analyzer-checker=core.DivideZero zero.c
 - **先找锤子，再找钉子**：先选择自己熟悉的某一类漏洞，从 [Available Checkers](https://clang-analyzer.llvm.org/available_checks.html) 中找到合适的 checker，再从 [官方 CVE 列表](https://www.cve.org) 或者 [第三方 CVE 列表](https://ubuntu.com/security/cves) 中根据漏洞类型的关键词搜索到历史漏洞
 - **先找钉子，再找锤子**：使用 [Ubuntu Pro](https://ubuntu.com/pro) 查找系统中包含的带有未修复 CVE 漏洞的软件包，根据该软件包中的某个历史漏洞，针对性地选取 checker 进行分析，并对比打 Patch 前后的分析结果
 
-每位同学都需要自行完成上述调研工作，并将选好的漏洞报给助教，避免雷同
+每位同学都需要自行完成上述调研工作，并根据选好的漏洞 [**填写问卷**](https://wj.sjtu.edu.cn/q/msx7677i) 报给助教，避免雷同
 
 TODO: 两种方法都添加一个例子，规定自选漏洞类别
 
