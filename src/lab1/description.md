@@ -43,7 +43,7 @@ echo $?
 
 操作系统：Ubuntu-20.04 x86_64
 
-编写的源代码保存在 crypto.c 中，测试代码 crytpo_test.c 由助教提供，代码如下：
+编写的源代码保存在 crypto.c 中，测试代码 crypto_test.c 由助教提供，代码如下：
 
 ```c
 {{#include crypto_test.c}}
