@@ -4,7 +4,7 @@
 
 假设我们处在软件开发上线的最后一个流程，现在需要你对源代码进行安全审计。如果是较小的代码库，可以采用规则匹配和人工分析的方式；但如果面对较大的代码库（例如 OpenSSL），则需要采用静态分析器了。
 
-目前主流的 C/C++ 静态分析器[^1]有 Clang Static Analyzer，Facebook Infer 和 SVF-Tools 三类。相对来说，Clang Static Analyzer 更为新手友好，也更容易面向真实软件。
+目前主流的 C/C++ 静态分析器[^1]有 Clang Static Analyzer，Facebook Infer 和 SVF-tools。相对来说，Clang Static Analyzer 更为新手友好，也更容易分析大型软件。
 
 ### 运行
 
