@@ -64,6 +64,10 @@ AFAIK，软件防护（以及代表性工具）有以下三类：
 
 ### 运行
 
+操作系统：Ubuntu-22.04 x86_64，软件环境与实验一类似（请使用包管理器安装的 `clang`）
+
+#### 运行 LLVM Pass
+
 Pass 的运行对象是 Clang 编译过程中产生的中间语言。以 [New Pass Manager](https://llvm.org/docs/NewPassManager.html) 为例，可以使用如下命令来运行一个 LLVM Pass：
 
 ```bash
@@ -73,11 +77,56 @@ $LLVM_DIR/bin/clang -O1 -S -emit-llvm test.c -o test.ll
 $LLVM_DIR/bin/opt -load-pass-plugin ./libHelloWorld.{so|dylib} -passes=hello-world test.ll -S -o test_instrumented.ll
 ```
 
+#### 生成 RISC-V 架构的二进制文件
+
+选定了数据集的一个文件后，我们先将源代码单独编译为 RISC-V 架构的二进制文件，查看程序的正常行为：
+
+```bash
+cd C/testcases/CWE457_Use_of_Uninitialized_Variable/s01
+# clang 交叉编译
+clang --static --target=riscv64-linux-gnu --sysroot=/usr/lib/riscv64-linux-gnu -DINCLUDEMAIN -I ../../../testcasesupport/ ../../../testcasesupport/io.c CWE457_Use_of_Uninitialized_Variable__int_01.c -o CWE457_Use_of_Uninitialized_Variable__int_01
+```
+
+运行结果如下：
+
+```bash
+# 使用 qemu-riscv64 运行
+testcases/CWE457_Use_of_Uninitialized_Variable/s01 ❯ qemu-riscv64 CWE457_Use_of_Uninitialized_Variable__int_01
+Calling good()...
+5
+5
+Finished good()
+Calling bad()...
+0
+Finished bad()
+```
+
+我们也可以先将源代码生成文本形式的 LLVM IR：
+
+```bash
+# 生成 IR 文件
+clang -DINCLUDEMAIN -I ../../../testcasesupport/ -emit-llvm -S ../../../testcasesupport/io.c  CWE457_Use_of_Uninitialized_Variable__int_01.c
+# 查看产生的 IR 文件
+ll *.ll
+```
+
+此时，我们可以直接使用 [`lli`](https://www.llvm.org/docs/CommandGuide/lli.html) 以 JIT 的形式来运行 LLVM IR （运行多个 LLVM IR 文件时需要 [`wllvm`](https://github.com/travitch/whole-program-llvm) 的支持）；也可以在经过 LLVM Pass 的处理后进一步生成二进制程序
+
+```bash
+# 将 IR 文件转化为 RISC-V 汇编指令
+llc --march=riscv64 --mcpu=generic-rv64 --mattr=+f,+d CWE457_Use_of_Uninitialized_Variable__int_01.ll
+llc --march=riscv64 --mcpu=generic-rv64 --mattr=+f,+d io.ll
+# 将汇编指令生成二进制程序
+riscv64-linux-gnu-gcc --static CWE457_Use_of_Uninitialized_Variable__int_01.s io.s
+```
+
+类似地，通过 `qemu-riscv64` 来运行该二进制程序
+
 ### 要求
 
 AFAIK，现在基于 RISC-V 架构开发的开源 C/C++ 项目不算多，所以我们将防护的对象放到人为构造的软件漏洞数据集上。
 
-[Juliet Test Suite for C/C++](https://samate.nist.gov/SARD/test-suites/112)  是 NIST 推出的，用于检测源代码/二进制分析工具的数据集。Juliet 其按照通用漏洞类型 [CWE](https://cwe.mitre.org) 进行组织，并为每一类漏洞提供了大量的测试代码和编译脚本。
+[Juliet Test Suite for C/C++](https://samate.nist.gov/SARD/test-suites/112)  是 NIST 推出的，用于评估源代码/二进制分析工具的数据集。Juliet 其按照通用漏洞类型 [CWE](https://cwe.mitre.org) 进行组织，并为每一类漏洞提供了大量的测试代码和编译脚本。
 
 每位同学需要在 Juliet 中**选择一类漏洞中的某一个文件**进行防护（可以选择自己较为熟悉的漏洞）。防护的流程如下：
 
@@ -85,6 +134,9 @@ AFAIK，现在基于 RISC-V 架构开发的开源 C/C++ 项目不算多，所以
 2. 对 LLVM IR 运行 LLVM Pass，生成新的 LLVM IR
 3. 使用 [`llc`](https://www.llvm.org/docs/CommandGuide/llc.html) 将经过插桩后的 LLVM IR 生成 RISC-V 架构的汇编代码
 4. 将汇编代码编译为二进制程序，使用实验一中的 `qemu-riscv64` 运行
+5. 将运行的结果与直接编译生成的 RISC-V 程序进行对比，体现防护功能
+
+PS：LLVM 还提供了 [MachineFunctionPass](https://llvm.org/doxygen/classllvm_1_1MachineFunctionPass.html) 供开发者在后端代码生成时进行插桩，感兴趣的同学可以深入研究
 
 ### 建议
 
@@ -93,8 +145,8 @@ AFAIK，现在基于 RISC-V 架构开发的开源 C/C++ 项目不算多，所以
 - [学习 LLVM IR 的语法](https://github.com/Evian-Zhang/llvm-ir-tutorial)
 - 阅读 LLVM 官方提供的 [Pass](https://github.com/llvm/llvm-project/tree/main/llvm/lib/Transforms)，它们已经被集成到了 `opt` 中，可以通过 `opt -h` 查看
 - 学习现有的内存泄漏检测 / 系统防护机制，设计防护手段
-
-TODO：给出某一个 CWE 防护的例子
+- 一些使用 LLVM Pass 进行防护的例子：
+  - [SafeStack](https://clang.llvm.org/docs/SafeStack.html#known-compatibility-limitations)
 
 {{#include ../star.md}}
 
