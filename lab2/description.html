@@ -187,22 +187,57 @@
 </ul>
 <p>以上方案中，LLVM Pass 可以说是相关资料最多，可扩展性最强的。LLVM Pass 主要分为 Analysis / Tranformation 两种，考虑到我们是用于软件防护，而不是程序分析，<strong>所以使用 Transformation Pass 来修改原有的代码，添加我们用于防护的代码</strong>。</p>
 <h3 id="运行-1"><a class="header" href="#运行-1">运行</a></h3>
+<p>操作系统：Ubuntu-22.04 x86_64，软件环境与实验一类似（请使用包管理器安装的 <code>clang</code>）</p>
+<h4 id="运行-llvm-pass"><a class="header" href="#运行-llvm-pass">运行 LLVM Pass</a></h4>
 <p>Pass 的运行对象是 Clang 编译过程中产生的中间语言。以 <a href="https://llvm.org/docs/NewPassManager.html">New Pass Manager</a> 为例，可以使用如下命令来运行一个 LLVM Pass：</p>
 <pre><code class="language-bash"># 生成文本格式的 LLVM IR，这里指定优化很关键
 $LLVM_DIR/bin/clang -O1 -S -emit-llvm test.c -o test.ll
 # 对 IR 运行以插件形式加载的 Pass，讲插桩后的 IR 保存到新的文件中
 $LLVM_DIR/bin/opt -load-pass-plugin ./libHelloWorld.{so|dylib} -passes=hello-world test.ll -S -o test_instrumented.ll
 </code></pre>
+<h4 id="生成-risc-v-架构的二进制文件"><a class="header" href="#生成-risc-v-架构的二进制文件">生成 RISC-V 架构的二进制文件</a></h4>
+<p>选定了数据集的一个文件后，我们先将源代码单独编译为 RISC-V 架构的二进制文件，查看程序的正常行为：</p>
+<pre><code class="language-bash">cd C/testcases/CWE457_Use_of_Uninitialized_Variable/s01
+# clang 交叉编译
+clang --static --target=riscv64-linux-gnu --sysroot=/usr/lib/riscv64-linux-gnu -DINCLUDEMAIN -I ../../../testcasesupport/ ../../../testcasesupport/io.c CWE457_Use_of_Uninitialized_Variable__int_01.c -o CWE457_Use_of_Uninitialized_Variable__int_01
+</code></pre>
+<p>运行结果如下：</p>
+<pre><code class="language-bash"># 使用 qemu-riscv64 运行
+testcases/CWE457_Use_of_Uninitialized_Variable/s01 ❯ qemu-riscv64 CWE457_Use_of_Uninitialized_Variable__int_01
+Calling good()...
+5
+5
+Finished good()
+Calling bad()...
+0
+Finished bad()
+</code></pre>
+<p>我们也可以先将源代码生成文本形式的 LLVM IR：</p>
+<pre><code class="language-bash"># 生成 IR 文件
+clang -DINCLUDEMAIN -I ../../../testcasesupport/ -emit-llvm -S ../../../testcasesupport/io.c  CWE457_Use_of_Uninitialized_Variable__int_01.c
+# 查看产生的 IR 文件
+ll *.ll
+</code></pre>
+<p>此时，我们可以直接使用 <a href="https://www.llvm.org/docs/CommandGuide/lli.html"><code>lli</code></a> 以 JIT 的形式来运行 LLVM IR （运行多个 LLVM IR 文件时需要 <a href="https://github.com/travitch/whole-program-llvm"><code>wllvm</code></a> 的支持）；也可以在经过 LLVM Pass 的处理后进一步生成二进制程序</p>
+<pre><code class="language-bash"># 将 IR 文件转化为 RISC-V 汇编指令
+llc --march=riscv64 --mcpu=generic-rv64 --mattr=+f,+d CWE457_Use_of_Uninitialized_Variable__int_01.ll
+llc --march=riscv64 --mcpu=generic-rv64 --mattr=+f,+d io.ll
+# 将汇编指令生成二进制程序
+riscv64-linux-gnu-gcc --static CWE457_Use_of_Uninitialized_Variable__int_01.s io.s
+</code></pre>
+<p>类似地，通过 <code>qemu-riscv64</code> 来运行该二进制程序</p>
 <h3 id="要求-1"><a class="header" href="#要求-1">要求</a></h3>
 <p>AFAIK，现在基于 RISC-V 架构开发的开源 C/C++ 项目不算多，所以我们将防护的对象放到人为构造的软件漏洞数据集上。</p>
-<p><a href="https://samate.nist.gov/SARD/test-suites/112">Juliet Test Suite for C/C++</a>  是 NIST 推出的，用于检测源代码/二进制分析工具的数据集。Juliet 其按照通用漏洞类型 <a href="https://cwe.mitre.org">CWE</a> 进行组织，并为每一类漏洞提供了大量的测试代码和编译脚本。</p>
+<p><a href="https://samate.nist.gov/SARD/test-suites/112">Juliet Test Suite for C/C++</a>  是 NIST 推出的，用于评估源代码/二进制分析工具的数据集。Juliet 其按照通用漏洞类型 <a href="https://cwe.mitre.org">CWE</a> 进行组织，并为每一类漏洞提供了大量的测试代码和编译脚本。</p>
 <p>每位同学需要在 Juliet 中<strong>选择一类漏洞中的某一个文件</strong>进行防护（可以选择自己较为熟悉的漏洞）。防护的流程如下：</p>
 <ol>
 <li>先将测试文件编译成 LLVM IR</li>
 <li>对 LLVM IR 运行 LLVM Pass，生成新的 LLVM IR</li>
 <li>使用 <a href="https://www.llvm.org/docs/CommandGuide/llc.html"><code>llc</code></a> 将经过插桩后的 LLVM IR 生成 RISC-V 架构的汇编代码</li>
 <li>将汇编代码编译为二进制程序，使用实验一中的 <code>qemu-riscv64</code> 运行</li>
+<li>将运行的结果与直接编译生成的 RISC-V 程序进行对比，体现防护功能</li>
 </ol>
+<p>PS：LLVM 还提供了 <a href="https://llvm.org/doxygen/classllvm_1_1MachineFunctionPass.html">MachineFunctionPass</a> 供开发者在后端代码生成时进行插桩，感兴趣的同学可以深入研究</p>
 <h3 id="建议-1"><a class="header" href="#建议-1">建议</a></h3>
 <ul>
 <li>使用助教提供的脚本自动生成 LLVM Pass 的模板，专注于代码逻辑而不是 Pass 的运行机制</li>
@@ -210,8 +245,12 @@ $LLVM_DIR/bin/opt -load-pass-plugin ./libHelloWorld.{so|dylib} -passes=hello-wor
 <li><a href="https://github.com/Evian-Zhang/llvm-ir-tutorial">学习 LLVM IR 的语法</a></li>
 <li>阅读 LLVM 官方提供的 <a href="https://github.com/llvm/llvm-project/tree/main/llvm/lib/Transforms">Pass</a>，它们已经被集成到了 <code>opt</code> 中，可以通过 <code>opt -h</code> 查看</li>
 <li>学习现有的内存泄漏检测 / 系统防护机制，设计防护手段</li>
+<li>一些使用 LLVM Pass 进行防护的例子：
+<ul>
+<li><a href="https://clang.llvm.org/docs/SafeStack.html#known-compatibility-limitations">SafeStack</a></li>
 </ul>
-<p>TODO：给出某一个 CWE 防护的例子</p>
+</li>
+</ul>
 <p>PS：如果你觉得本手册写的还不错的话，不妨点个 <a href="https://github.com/cascades-sjtu/nis7021-labs/stargazers">star</a> 吧，这是对我最大的鼓励～</p>
 <div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
 <p>http://www.jos.org.cn/jos/article/abstract/6569</p>
