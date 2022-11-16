@@ -549,7 +549,7 @@ $LLVM_DIR/bin/clang -O1 -S -emit-llvm test.c -o test.ll
 $LLVM_DIR/bin/opt -load-pass-plugin ./libHelloWorld.{so|dylib} -passes=hello-world test.ll -S -o test_instrumented.ll
 </code></pre>
 <h4 id="生成-risc-v-架构的二进制文件"><a class="header" href="#生成-risc-v-架构的二进制文件">生成 RISC-V 架构的二进制文件</a></h4>
-<p>选定了数据集的一个文件后，我们先将源代码单独编译为 RISC-V 架构的二进制文件，查看程序的正常行为：</p>
+<p>以编译 Juliet Test Suite（见下文）中的某一类漏洞的某一个源代码文件为例，我们先将其单独编译为 RISC-V 架构的二进制文件，查看程序的正常行为：</p>
 <pre><code class="language-bash">cd C/testcases/CWE457_Use_of_Uninitialized_Variable/s01
 # clang 交叉编译
 clang --static --target=riscv64-linux-gnu --sysroot=/usr/lib/riscv64-linux-gnu -DINCLUDEMAIN -I ../../../testcasesupport/ ../../../testcasesupport/io.c CWE457_Use_of_Uninitialized_Variable__int_01.c -o CWE457_Use_of_Uninitialized_Variable__int_01
