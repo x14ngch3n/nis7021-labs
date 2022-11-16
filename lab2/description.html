@@ -168,6 +168,7 @@
 <li>
 <p><strong>先找锤子，再找钉子</strong>：先选择自己熟悉的某一类漏洞，从 <a href="https://clang-analyzer.llvm.org/available_checks.html">Available Checkers</a> 中找到合适的 checker，再从 <a href="https://www.cve.org">官方 CVE 列表</a> 或者 <a href="https://ubuntu.com/security/cves">第三方 CVE 列表</a> 中根据漏洞类型的关键词搜索到历史漏洞。</p>
 <ul>
+<li>以 core.DivideZero checker 为例</li>
 <li>先以 &quot;divide by zero&quot; 为关键词搜索，发现 <a href="https://gitlab.com/libtiff/libtiff">libtiff</a> 最近披露的两个漏洞：<a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-0909">CVE-2022-0909</a> 和 <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-2056">CVE-2022-2056</a>。使用 core.DivideZero checker 尝试进行分析发现对应的结果，发现与 CVE 所报告的漏洞位置对应（注意 <code>git checkout</code> 到对应的 <code>commit</code>）。</li>
 <li>分析同一函数 <code>computeOutputPixelOffsets()</code> 中的 <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-2057">CVE-2022-2057</a> 和 <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-2058">CVE-2022-2058</a> 的类似漏洞，进一步思考造成漏报的原因。</li>
 <li>分析报告结果中没有被认定为 CVE 的问题代码，验证其是否为误报。</li>
@@ -177,12 +178,14 @@
 <li>
 <p><strong>先找钉子，再找锤子</strong>：使用 <a href="https://ubuntu.com/pro">Ubuntu Pro</a> 查找系统中包含的带有未修复 CVE 漏洞的软件包，根据该软件包中的某个历史漏洞，针对性地选取 checker 进行分析，并对比打 patch 前后的分析结果。</p>
 <ul>
-<li>以 Ubuntu Pro 官方提供的例子进行分析</li>
+<li>使用 Ubuntu Pro 官方<a href="https://ubuntu.com/pro/beta">提供的步骤</a>配置</li>
+<li>扫描本机的安装包，发现 python 和 fish 两个软件包存在安全更新</li>
+<li>进一步通过 <code>apt source</code> 下载源代码查看 CVE 编号，分别为 <a href="https://ubuntu.com/security/CVE-2022-20001">CVE-2022-20001</a>，<a href="https://ubuntu.com/security/CVE-2021-4189">CVE-2021-4189</a>，<a href="https://ubuntu.com/security/CVE-2022-0931">CVE-2022-0931</a></li>
+<li>发现均为逻辑漏洞，且发生在 Python 和 fish shell 语言中，无法用 CSA 检测</li>
 </ul>
 </li>
 </ul>
-<p>每位同学都需要自行完成上述调研工作，并根据选好的漏洞 <a href="https://wj.sjtu.edu.cn/q/msx7677i"><strong>填写问卷</strong></a> 报给助教，避免雷同。当然，如果你志在发现 <strong>0Day</strong> 的漏洞，就不需要按照上面的流程，且会有酌情加分。</p>
-<p>TODO: 两种方法都添加一个例子，规定自选漏洞类别</p>
+<p>每位同学都需要自行完成上述调研工作，并根据选好的漏洞 <a href="https://wj.sjtu.edu.cn/q/msx7677i"><strong>填写问卷</strong></a> 报给助教，避免雷同。当然，如果你志在发现 <strong>0Day</strong> 的漏洞或有相关经验，就不需要按照上面的流程，且会有酌情加分。</p>
 <h3 id="建议"><a class="header" href="#建议">建议</a></h3>
 <ul>
 <li>按照命名和介绍来选择合适的 checker，先运行官方提供的测试代码，理解 checker 行为</li>
