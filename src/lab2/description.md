@@ -152,7 +152,7 @@ PS：LLVM 还提供了 [MachineFunctionPass](https://llvm.org/doxygen/classllvm_
 - 阅读 LLVM 官方提供的 [Pass](https://github.com/llvm/llvm-project/tree/main/llvm/lib/Transforms)，它们已经被集成到了 `opt` 中，可以通过 `opt -h` 查看
 - 学习现有的内存泄漏检测 / 系统防护机制，设计防护手段
 - 一些使用 LLVM Pass 进行防护的例子：
-  - [SafeStack](https://clang.llvm.org/docs/SafeStack.html#known-compatibility-limitations)
+  - [SafeStack](https://clang.llvm.org/docs/SafeStack.html)
   - [Sanitizers](https://github.com/google/sanitizers)
 
 {{#include ../star.md}}
