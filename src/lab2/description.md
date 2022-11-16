@@ -85,7 +85,7 @@ $LLVM_DIR/bin/opt -load-pass-plugin ./libHelloWorld.{so|dylib} -passes=hello-wor
 
 #### 生成 RISC-V 架构的二进制文件
 
-选定了数据集的一个文件后，我们先将源代码单独编译为 RISC-V 架构的二进制文件，查看程序的正常行为：
+以编译 Juliet Test Suite（见下文）中的某一类漏洞的某一个源代码文件为例，我们先将其单独编译为 RISC-V 架构的二进制文件，查看程序的正常行为：
 
 ```bash
 cd C/testcases/CWE457_Use_of_Uninitialized_Variable/s01
