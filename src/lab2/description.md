@@ -35,17 +35,19 @@ clang -cc1 -analyze -analyzer-checker=core.DivideZero zero.c
 如果把代码分析工具比喻成锤子，把漏洞比喻为钉子，我们可以有以下两种寻找分析世界漏洞的思路：
 
 - **先找锤子，再找钉子**：先选择自己熟悉的某一类漏洞，从 [Available Checkers](https://clang-analyzer.llvm.org/available_checks.html) 中找到合适的 checker，再从 [官方 CVE 列表](https://www.cve.org) 或者 [第三方 CVE 列表](https://ubuntu.com/security/cves) 中根据漏洞类型的关键词搜索到历史漏洞。
+  - 以 core.DivideZero checker 为例
   - 先以 "divide by zero" 为关键词搜索，发现 [libtiff](https://gitlab.com/libtiff/libtiff) 最近披露的两个漏洞：[CVE-2022-0909](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-0909) 和 [CVE-2022-2056](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-2056)。使用 core.DivideZero checker 尝试进行分析发现对应的结果，发现与 CVE 所报告的漏洞位置对应（注意 `git checkout` 到对应的 `commit`）。
   - 分析同一函数 `computeOutputPixelOffsets()` 中的 [CVE-2022-2057](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-2057) 和 [CVE-2022-2058](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-2058) 的类似漏洞，进一步思考造成漏报的原因。
   - 分析报告结果中没有被认定为 CVE 的问题代码，验证其是否为误报。
   - 分析的详细结果见 [libtiff.md](https://github.com/cascades-sjtu/nis7021-labs/blob/main/src/lab2/libtiff.md)
 
 - **先找钉子，再找锤子**：使用 [Ubuntu Pro](https://ubuntu.com/pro) 查找系统中包含的带有未修复 CVE 漏洞的软件包，根据该软件包中的某个历史漏洞，针对性地选取 checker 进行分析，并对比打 patch 前后的分析结果。
-  - 以 Ubuntu Pro 官方提供的例子进行分析
+  - 使用 Ubuntu Pro 官方[提供的步骤](https://ubuntu.com/pro/beta)配置
+  - 扫描本机的安装包，发现 python 和 fish 两个软件包存在安全更新
+  - 进一步通过 `apt source` 下载源代码查看 CVE 编号，分别为 [CVE-2022-20001](https://ubuntu.com/security/CVE-2022-20001)，[CVE-2021-4189](https://ubuntu.com/security/CVE-2021-4189)，[CVE-2022-0931](https://ubuntu.com/security/CVE-2022-0931)
+  - 发现均为逻辑漏洞，且发生在 Python 和 fish shell 语言中，无法用 CSA 检测
 
-每位同学都需要自行完成上述调研工作，并根据选好的漏洞 [**填写问卷**](https://wj.sjtu.edu.cn/q/msx7677i) 报给助教，避免雷同。当然，如果你志在发现 **0Day** 的漏洞，就不需要按照上面的流程，且会有酌情加分。
-
-TODO: 两种方法都添加一个例子，规定自选漏洞类别
+每位同学都需要自行完成上述调研工作，并根据选好的漏洞 [**填写问卷**](https://wj.sjtu.edu.cn/q/msx7677i) 报给助教，避免雷同。当然，如果你志在发现 **0Day** 的漏洞或有相关经验，就不需要按照上面的流程，且会有酌情加分。
 
 ### 建议
 
