@@ -579,6 +579,7 @@ llc --march=riscv64 --mcpu=generic-rv64 --mattr=+f,+d io.ll
 riscv64-linux-gnu-gcc --static CWE457_Use_of_Uninitialized_Variable__int_01.s io.s
 </code></pre>
 <p>类似地，通过 <code>qemu-riscv64</code> 来运行该二进制程序</p>
+<p>PS：LLVM/Clang 交叉编译 RISC-V 中可能会遇到很多小问题，欢迎和助教讨论～</p>
 <h3 id="要求-3"><a class="header" href="#要求-3">要求</a></h3>
 <p>AFAIK，现在基于 RISC-V 架构开发的开源 C/C++ 项目不算多，所以我们将防护的对象放到人为构造的软件漏洞数据集上。</p>
 <p><a href="https://samate.nist.gov/SARD/test-suites/112">Juliet Test Suite for C/C++</a>  是 NIST 推出的，用于评估源代码/二进制分析工具的数据集。Juliet 其按照通用漏洞类型 <a href="https://cwe.mitre.org">CWE</a> 进行组织，并为每一类漏洞提供了大量的测试代码和编译脚本。</p>
