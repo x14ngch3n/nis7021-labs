@@ -128,6 +128,8 @@ riscv64-linux-gnu-gcc --static CWE457_Use_of_Uninitialized_Variable__int_01.s io
 
 类似地，通过 `qemu-riscv64` 来运行该二进制程序
 
+PS：LLVM/Clang 交叉编译 RISC-V 中可能会遇到很多小问题，欢迎和助教讨论～
+
 ### 要求
 
 AFAIK，现在基于 RISC-V 架构开发的开源 C/C++ 项目不算多，所以我们将防护的对象放到人为构造的软件漏洞数据集上。
