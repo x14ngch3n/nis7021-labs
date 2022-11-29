@@ -47,7 +47,7 @@ clang -cc1 -analyze -analyzer-checker=core.DivideZero zero.c
   - 进一步通过 `apt source` 下载源代码查看 CVE 编号，分别为 [CVE-2022-20001](https://ubuntu.com/security/CVE-2022-20001)，[CVE-2021-4189](https://ubuntu.com/security/CVE-2021-4189)，[CVE-2022-0931](https://ubuntu.com/security/CVE-2022-0931)
   - 发现均为逻辑漏洞，且发生在 Python 和 fish shell 语言中，无法用 CSA 检测
 
-每位同学都需要自行完成上述调研工作，并根据选好的漏洞 [**填写问卷**](https://wj.sjtu.edu.cn/q/msx7677i) 报给助教，避免雷同。当然，如果你志在发现 **0Day** 的漏洞或有相关经验，就不需要按照上面的流程，且会有酌情加分。
+每位同学都需要自行完成上述调研工作，**找到可以使用 Clang Static Analyzer 扫描出来的漏洞**， 并根据选好的漏洞 [**填写问卷**](https://wj.sjtu.edu.cn/q/msx7677i) 报给助教，避免雷同。当然，如果你志在发现 **0Day** 的漏洞或有相关经验，就不需要按照上面的流程，且会有酌情加分。
 
 ### 建议
 
